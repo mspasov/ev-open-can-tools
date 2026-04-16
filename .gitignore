@@ -240,3 +240,8 @@ pyrightconfig.json
 # CUSTOM STUFF #
 .tests
 .tmpcoverage_build/
+
+# Claude Code local files
+.claude/settings.local.json
+.claude/*.local.json
+.claude/local/
