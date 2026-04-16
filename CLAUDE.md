@@ -6,6 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 PlatformIO-only C++/Arduino firmware that intercepts and re-transmits CAN bus frames on supported EVs in real time. The same source builds for several MCUs (RP2040, SAME51, ESP32 variants) and for a host-native test target (`NATIVE_BUILD`). Safety disclaimer in `README.md` applies — this is a private-testing / educational tool.
 
+## Setup
+
+PlatformIO Core is the only required toolchain; it pulls its own compilers and frameworks on first use. Use the same pinned version CI runs (`PLATFORMIO_VERSION` in `.github/workflows/ci.yml`, currently `6.1.19`) to avoid drift:
+
+```
+pip install "platformio==6.1.19"
+```
+
+This installs the `pio` CLI (verify with `pio --version`). If `pio` isn't on your `PATH` after install, it typically lives at `~/.platformio/penv/bin/pio` (user install) or `/usr/local/bin/pio` (system install). `clang-format` is needed for the lint step; install via your package manager (`apt install clang-format`, `brew install clang-format`, etc.). The Python helper tests and `scripts/check_release_metadata.py` only need the stdlib — no extra packages.
+
 ## Common commands
 
 Build / test / lint are all driven through PlatformIO, plus a single clang-format check. Each command below is what CI runs (`.github/workflows/ci.yml`).
